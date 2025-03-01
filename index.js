@@ -9,7 +9,13 @@ const ProductModel = require("./models/product");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+
+app.use(cors({
+    origin: 'https://kvnagro.netlify.app', // Allow only your frontend
+    methods: 'GET,POST,PUT,DELETE',
+    credentials: true // Allow cookies and authentication headers if needed
+}));
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB Connected"))
